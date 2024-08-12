@@ -24,6 +24,7 @@ let users = [
     }
 ]
 
+// Rota de busca de usuários
 router.get('/users/:id', ctx => {
     if (!users[ctx.params.id - 1]) {
         return ctx.throw(404, 'Usuário não encontrado');
@@ -33,12 +34,14 @@ router.get('/users/:id', ctx => {
     ctx.body = users[ctx.params.id - 1];
 });
 
+// Rota de atualização de usuários
 router.post('/users/:id', ctx => {
     if (!users[ctx.params.id - 1]) {
         return ctx.throw(404, 'Usuário não encontrado');
     }
 
     ctx.status = 200;
+                                //target object                 //source object
     ctx.body = Object.assign(users[ctx.params.id - 1], ctx.request.body);
 });
 
